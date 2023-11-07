@@ -16,36 +16,36 @@ function PrintSize() {
     {
       imageURL:
         "https://images.pexels.com/photos/268533/pexels-photo-268533.jpeg?cs=srgb&dl=pexels-pixabay-268533.jpg&fm=jpg",
-      inchSize: '4*6" ',
-      mmSize: "(102mm x 152mm)",
-      price: "₹70",
+      inchSize: '5*7" ',
+      mmSize: "(127mm x 178mm)",
+      price: "₹170",
     },
     {
       imageURL:
         "https://images.pexels.com/photos/268533/pexels-photo-268533.jpeg?cs=srgb&dl=pexels-pixabay-268533.jpg&fm=jpg",
-      inchSize: '4*6" ',
-      mmSize: "(102mm x 152mm)",
-      price: "₹70",
+      inchSize: '6*8" ',
+      mmSize: "(152mm x 203mm)",
+      price: "₹250",
     },
     {
       imageURL:
         "https://images.pexels.com/photos/268533/pexels-photo-268533.jpeg?cs=srgb&dl=pexels-pixabay-268533.jpg&fm=jpg",
-      inchSize: '4*6" ',
-      mmSize: "(102mm x 152mm)",
-      price: "₹70",
+      inchSize: '8*10" ',
+      mmSize: "(203mm x 254mm)",
+      price: "₹830",
     },
     {
       imageURL:
         "https://images.pexels.com/photos/268533/pexels-photo-268533.jpeg?cs=srgb&dl=pexels-pixabay-268533.jpg&fm=jpg",
-      inchSize: '4*6" ',
-      mmSize: "(102mm x 152mm)",
-      price: "₹70",
+      inchSize: '10*15" ',
+      mmSize: "(254mm x 381mm)",
+      price: "₹1000",
     },
     {
       imageURL:
         "https://images.pexels.com/photos/268533/pexels-photo-268533.jpeg?cs=srgb&dl=pexels-pixabay-268533.jpg&fm=jpg",
-      inchSize: '4*6" ',
-      mmSize: "(102mm x 152mm)",
+      inchSize: '3.5*3.5" ',
+      mmSize: "(89mm x 89mm)",
       price: "₹70",
     },
   ];
