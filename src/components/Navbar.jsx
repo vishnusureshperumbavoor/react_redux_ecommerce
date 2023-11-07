@@ -9,6 +9,7 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import LocalPrintshopIcon from "@mui/icons-material/LocalPrintshop";
 import HomeIcon from "@mui/icons-material/Home";
+import { Link } from "react-router-dom";
 
 function Navbar() {
   return (
@@ -22,23 +23,25 @@ function Navbar() {
             <LocalPrintshopIcon
               sx={{ display: { xs: "none", md: "flex" }, mr: 1, color: "#000" }}
             />
-            <Typography
-              variant="h6"
-              noWrap
-              component="a"
-              href="#app-bar-with-responsive-menu"
-              sx={{
-                mr: 2,
-                display: { xs: "none", md: "flex" },
-                fontFamily: "monospace",
-                fontWeight: 700,
-                letterSpacing: ".3rem",
-                color: "#000",
-                textDecoration: "none",
-              }}
-            >
-              VSP Prints & Gifts
-            </Typography>
+            <Link to="/" style={{ textDecoration: "none" }}>
+              <Typography
+                variant="h6"
+                noWrap
+                component="a"
+                href="#app-bar-with-responsive-menu"
+                sx={{
+                  mr: 2,
+                  display: { xs: "none", md: "flex" },
+                  fontFamily: "monospace",
+                  fontWeight: 700,
+                  letterSpacing: ".3rem",
+                  color: "#000",
+                  textDecoration: "none",
+                }}
+              >
+                VSP Prints & Gifts
+              </Typography>
+            </Link>
 
             <Box sx={{ flexGrow: 0 }}>
               <Tooltip title="Open settings">

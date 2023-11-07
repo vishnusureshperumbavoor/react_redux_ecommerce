@@ -8,8 +8,7 @@ import { productData } from "../data/data";
 
 function PrintSize() {
   return (
-    <div>
-      <Navbar />
+    <div style={{ minHeight: "537px" }}>
       <Container maxWidth="xl">
         <Box sx={{ borderBottom: 2, borderColor: "#679e1e" }}>
           <Typography
@@ -18,13 +17,12 @@ function PrintSize() {
             Select a print size
           </Typography>
         </Box>
-        <Box sx={{ display: "flex", flexDirection: "row", mt: 2, mb: 17.4 }}>
+        <Box sx={{ display: "flex", flexDirection: "row", mt: 2}}>
           {productData.map((product, index) => (
             <ImageCard key={index} product={product} />
           ))}
         </Box>
       </Container>
-      <Footer />
     </div>
   );
 }

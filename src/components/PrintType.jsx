@@ -1,7 +1,13 @@
 import React from "react";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
-import { Container, Typography } from "@mui/material";
+import {
+  Card,
+  CardActionArea,
+  CardContent,
+  Container,
+  Typography,
+} from "@mui/material";
 import { useParams } from "react-router-dom";
 import { productData } from "../data/data";
 import NotFound from "./NotFound";
@@ -9,22 +15,30 @@ import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
+import { useState } from "react";
 
 function PrintType() {
   const params = useParams();
   const productId = Number(params.id);
   let product = productData.find((product) => product.id === productId);
-  const [alignment, setAlignment] = React.useState("glossy");
+  const [paperType, setPaperType] = useState("glossy");
+  const [border, setBorder] = useState("border");
 
-  const handleChange = (event, newAlignment) => {
-    setAlignment(newAlignment);
+  const handlePaperType = (e, newAlignment) => {
+    e.preventDefault();
+    setPaperType(newAlignment);
   };
+
+  const handleBorder = (e, newAlignment) => {
+    e.preventDefault();
+    setBorder(newAlignment);
+  };
+
   if (!product) {
     return <NotFound />;
   }
   return (
-    <div>
-      <Navbar />
+    <div style={{ minHeight: "537px" }}>
       <Container>
         <Box>
           <Typography
@@ -38,20 +52,18 @@ function PrintType() {
             display: "flex",
             flexWrap: "wrap",
             justifyContent: "center",
-            "& > :not(style)": {
-              mb: 27.7,
-            },
+            "& > :not(style)": {},
           }}
         >
-          <Paper elevation={3} sx={{ mb: 12 }}>
+          <Paper elevation={3}>
             <Container>
               <Box sx={{ borderBottom: 2, borderColor: "#679e1e" }}>
                 <Typography sx={{ mt: 1 }}>Paper Type</Typography>
                 <ToggleButtonGroup
                   color="primary"
-                  value={alignment}
+                  value={paperType}
                   exclusive
-                  onChange={handleChange}
+                  onChange={handlePaperType}
                   aria-label="Platform"
                   sx={{ mb: 2, mr: 2, ml: 2 }}
                 >
@@ -63,40 +75,69 @@ function PrintType() {
                 <Typography sx={{ mt: 1 }}>Border</Typography>
                 <ToggleButtonGroup
                   color="primary"
-                  value={alignment}
+                  value={border}
                   exclusive
-                  onChange={handleChange}
+                  onChange={handleBorder}
                   aria-label="Platform"
                   sx={{ mb: 2, mr: 2, ml: 2 }}
                 >
                   <ToggleButton value="borderless">
-                    <Typography sx={{ mr: 2 }}>Borderless</Typography>
-                    <img
-                      src={product.imageURL}
-                      height={product.height}
-                      width={product.width}
-                      alt=""
-                      style={{
-                        borderRadius: 2,
-                        boxShadow:
-                          "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
+                    <Card
+                      sx={{
+                        minWidth: 210,
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "flex-end",
                       }}
-                    />
+                    >
+                      {/* <CardActionArea> */}
+                      <CardContent>
+                        <img
+                          src={product.imageURL}
+                          height={product.height}
+                          width={product.width}
+                          alt=""
+                          style={{
+                            borderRadius: 2,
+                            boxShadow:
+                              "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
+                          }}
+                        />
+                      </CardContent>
+                      <CardContent>
+                        <Typography>Borderless</Typography>
+                      </CardContent>
+                    </Card>
                   </ToggleButton>
                   <ToggleButton value="border">
-                    <img
-                      src={product.imageURL}
-                      height={product.height}
-                      width={product.width}
-                      alt=""
-                      style={{
-                        padding: "2px",
-                        borderRadius: 2,
-                        boxShadow:
-                          "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
+                    <Card
+                      sx={{
+                        minWidth: 210,
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "flex-end",
                       }}
-                    />
-                    <Typography sx={{ ml: 2 }}>Border</Typography>
+                    >
+                      {/* <CardActionArea> */}
+                      <CardContent>
+                        <img
+                          src={product.imageURL}
+                          height={product.height}
+                          width={product.width}
+                          alt=""
+                          style={{
+                            padding: 2,
+                            borderRadius: 2,
+                            boxShadow:
+                              "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
+                          }}
+                        />
+                      </CardContent>
+                      <CardContent>
+                        <Typography>Border</Typography>
+                      </CardContent>
+                      {/* </CardActionArea> */}
+                    </Card>
                   </ToggleButton>
                 </ToggleButtonGroup>
               </Box>
@@ -104,7 +145,6 @@ function PrintType() {
           </Paper>
         </Box>
       </Container>
-      <Footer />
     </div>
   );
 }
