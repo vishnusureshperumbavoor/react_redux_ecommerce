@@ -13,7 +13,10 @@ import HomeIcon from "@mui/icons-material/Home";
 function Navbar() {
   return (
     <div>
-      <AppBar position="static" sx={{ background: "#fff" }}>
+      <AppBar
+        position="static"
+        sx={{ background: "#fff", borderBottom: 2, borderColor: "#679e1e" }}
+      >
         <Container maxWidth="xl">
           <Toolbar disableGutters>
             <LocalPrintshopIcon
@@ -43,8 +46,8 @@ function Navbar() {
                   sx={{ p: 0 }}
                   style={{ position: "absolute", right: 0, top: "20%" }}
                 >
-                  <Button sx={{ background: "green" }} variant="contained">
-                    <HomeIcon sx={{mr:1}}/>
+                  <Button sx={{ background: "#679e1e" }} variant="contained">
+                    <HomeIcon sx={{ mr: 1 }} />
                     Home
                   </Button>
                 </IconButton>
