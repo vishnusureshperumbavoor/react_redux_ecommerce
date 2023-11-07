@@ -9,7 +9,16 @@ function ImageCard({ product }) {
   console.log(product);
   return (
     <div>
-      <Card sx={{ minHeight: 260, minWidth: 210, m: 2,display:'flex',flexDirection:'column',justifyContent:'flex-end' }}>
+      <Card
+        sx={{
+          minHeight: 260,
+          minWidth: 210,
+          m: 2,
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "flex-end",
+        }}
+      >
         <CardActionArea>
           <CardContent>
             <img
@@ -17,6 +26,11 @@ function ImageCard({ product }) {
               height={product.height}
               width={product.width}
               alt=""
+              style={{
+                borderRadius: 2,
+                boxShadow:
+                  "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
+              }}
             />
           </CardContent>
           <CardContent sx={{ height: "50%" }}>
