@@ -12,6 +12,8 @@ function PrintSize() {
       inchSize: '4*6" ',
       mmSize: "(102mm x 152mm)",
       price: "₹70",
+      height: 48,
+      width: 72,
     },
     {
       imageURL:
@@ -19,6 +21,8 @@ function PrintSize() {
       inchSize: '5*7" ',
       mmSize: "(127mm x 178mm)",
       price: "₹170",
+      height: 60,
+      width: 84,
     },
     {
       imageURL:
@@ -26,6 +30,8 @@ function PrintSize() {
       inchSize: '6*8" ',
       mmSize: "(152mm x 203mm)",
       price: "₹250",
+      height: 72,
+      width: 96,
     },
     {
       imageURL:
@@ -33,6 +39,8 @@ function PrintSize() {
       inchSize: '8*10" ',
       mmSize: "(203mm x 254mm)",
       price: "₹830",
+      height: 96,
+      width: 120,
     },
     {
       imageURL:
@@ -40,6 +48,8 @@ function PrintSize() {
       inchSize: '10*15" ',
       mmSize: "(254mm x 381mm)",
       price: "₹1000",
+      height: 120,
+      width: 180,
     },
     {
       imageURL:
@@ -47,6 +57,8 @@ function PrintSize() {
       inchSize: '3.5*3.5" ',
       mmSize: "(89mm x 89mm)",
       price: "₹70",
+      height: 42,
+      width: 42,
     },
   ];
   return (
@@ -60,7 +72,7 @@ function PrintSize() {
             Select a print size
           </Typography>
         </Box>
-        <Box sx={{ display: "flex", flexDirection: "row", mt: 2, mb: 19.4 }}>
+        <Box sx={{ display: "flex", flexDirection: "row", mt: 2, mb: 17.4 }}>
           {productData.map((product, index) => (
             <ImageCard key={index} product={product} />
           ))}
