@@ -8,22 +8,26 @@ import { productData } from "../data/data";
 
 function PrintSize() {
   return (
-    <div style={{ minHeight: "537px" }}>
-      <Container maxWidth="xl">
-        <Box sx={{ borderBottom: 2, borderColor: "#679e1e" }}>
-          <Typography
-            sx={{ mt: 6, mb: 6, fontFamily: "Times New Roman", fontSize: 20 }}
-          >
-            Select a print size
-          </Typography>
-        </Box>
-        <Box sx={{ display: "flex", flexDirection: "row", mt: 2}}>
-          {productData.map((product, index) => (
-            <ImageCard key={index} product={product} />
-          ))}
-        </Box>
-      </Container>
-    </div>
+    <>
+    <Navbar/>
+      <div style={{ minHeight: "537px" }}>
+        <Container maxWidth="xl">
+          <Box sx={{ borderBottom: 2, borderColor: "#679e1e" }}>
+            <Typography
+              sx={{ mt: 6, mb: 6, fontFamily: "Times New Roman", fontSize: 20 }}
+            >
+              Select a print size
+            </Typography>
+          </Box>
+          <Box sx={{ display: "flex", flexDirection: "row", mt: 2 }}>
+            {productData.map((product, index) => (
+              <ImageCard key={index} product={product} />
+            ))}
+          </Box>
+        </Container>
+      </div>
+      <Footer/>
+    </>
   );
 }
 

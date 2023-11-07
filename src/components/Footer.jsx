@@ -4,8 +4,10 @@ import Toolbar from "@mui/material/Toolbar";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import { useParams } from 'react-router-dom';
 
 function Footer() {
+  const {id} = useParams();
   return (
     <div>
       <AppBar position="static" sx={{ background: "#679e1e" }}>
@@ -18,6 +20,15 @@ function Footer() {
               <ArrowBackIcon sx={{ mr: 1 }} />
               Back
             </Button>
+            {id && (
+              <Button
+                sx={{ background: "#679e1e", border: 1, borderRadius: 2 }}
+                variant="contained"
+              >
+                <ArrowBackIcon sx={{ mr: 1 }} />
+                Back
+              </Button>
+            )}
           </Toolbar>
         </Container>
       </AppBar>

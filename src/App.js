@@ -9,12 +9,10 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <Navbar className="navbar"c/>
         <Routes>
           <Route path="/" element={<PrintSize />} />
           <Route path="/:id" element={<PrintType />} />
         </Routes>
-        <Footer className="footer"/>
       </Router>
     </div>
   );
