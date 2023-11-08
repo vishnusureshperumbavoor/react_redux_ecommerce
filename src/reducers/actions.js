@@ -1,40 +1,39 @@
-export const ADD_PRODUCTS = "ADD_PRODUCTS";
-export const INCREMENT_COUNT_SINGLE_POST = "INCREMENT_COUNT_SINGLE_POST";
-export const DECREMENT_COUNT_SINGLE_POST = "DECREMENT_COUNT_SINGLE_POST";
-export const INCREMENT_COUNT_POSTS = "INCREMENT_COUNT_POSTS";
-export const DECREMENT_COUNT_POSTS = "DECREMENT_COUNT_POSTS";
+export const ADD_PRODUCT = "ADD_PRODUCT";
+export const INCREMENT_COUNT_SINGLE_PRODUCTS = "INCREMENT_COUNT_SINGLE_PRODUCTS";
+export const DECREMENT_COUNT_SINGLE_PRODUCTS = "DECREMENT_COUNT_SINGLE_PRODUCTS";
+export const INCREMENT_COUNT_PRODUCTS = "INCREMENT_COUNT_PRODUCTS";
+export const DECREMENT_COUNT_PRODUCTS = "DECREMENT_COUNT_PRODUCTS";
 
-export const addPost = (post) => {
+export const addProduct = (product) => {
   return {
-    type: ADD_PRODUCTS,
-    payload: post,
+    type: ADD_PRODUCT,
+    payload: product,
   };
 };
 
-export const incrementCountSinglePost = (post) => {
+export const incrementCountSingleProducts = (products) => {
   return {
-    type: INCREMENT_COUNT_POSTS,
-    payload: post,
+    type: INCREMENT_COUNT_PRODUCTS,
+    payload: products
   };
 };
 
-export const decrementCountSinglePost = (post) => {
+export const decrementCountSingleProducts = (products) => {
   return {
-    type: DECREMENT_COUNT_POSTS,
-    payload: post,
+    type: DECREMENT_COUNT_PRODUCTS,
+    payload: products,
   };
 };
 
-export const incrementCountPosts = (posts) => {
+export const incrementCountProducts = () => {
   return {
-    type: INCREMENT_COUNT_POSTS,
-    payload: posts,
+    type: INCREMENT_COUNT_PRODUCTS
   };
 };
 
-export const decrementCountPosts = (posts) => {
+export const decrementCountProducts = (products) => {
   return {
-    type: DECREMENT_COUNT_POSTS,
-    payload: posts,
+    type: DECREMENT_COUNT_PRODUCTS,
+    payload: products,
   };
 };

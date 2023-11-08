@@ -10,7 +10,7 @@ import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import PermMediaIcon from "@mui/icons-material/PermMedia";
 import { useDispatch,useSelector} from "react-redux";
-import { addPost } from "../reducers/actions";
+import { addProduct, incrementCountProducts } from "../reducers/actions";
 
 function ImageUpload() {
   let files = useSelector((state)=>state.products)
@@ -19,7 +19,7 @@ function ImageUpload() {
   const [cardsCount,setCardsCount] = useState(0)
 
   const handleMultipleCardsIncrement = ()=>{
-    setCardsCount(cardsCount+1)
+    dispatch(incrementCountProducts())
   }
 
   const handleMultipleCardsDecrement = () => {
@@ -30,7 +30,7 @@ function ImageUpload() {
 
   const handleFileInputChange = (e) => {
     const newImage = e.target.files[0];
-    dispatch(addPost(newImage))
+    dispatch(addProduct(newImage))
   };
 
   const VisuallyHiddenInput = styled("input")({
