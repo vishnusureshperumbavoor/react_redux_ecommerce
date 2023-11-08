@@ -13,11 +13,9 @@ import { useDispatch,useSelector} from "react-redux";
 import { addPost } from "../reducers/actions";
 
 function ImageUpload() {
-  let files = useSelector((state)=>state)
+  let files = useSelector((state)=>state.products)
   console.log(files);
   const dispatch = useDispatch()
-  const [uploadData, setUploadData] = useState([]);
-  const [fileInputKey, setFileInputKey] = useState(0);
   const [cardsCount,setCardsCount] = useState(0)
 
   const handleMultipleCardsIncrement = ()=>{
@@ -33,10 +31,6 @@ function ImageUpload() {
   const handleFileInputChange = (e) => {
     const newImage = e.target.files[0];
     dispatch(addPost(newImage))
-    if (newImage) {
-      setUploadData((prevImages) => [...prevImages, newImage]);
-      setFileInputKey((prevKey) => prevKey + 1);
-    }
   };
 
   const VisuallyHiddenInput = styled("input")({
@@ -84,7 +78,6 @@ function ImageUpload() {
               <VisuallyHiddenInput
                 type="file"
                 accept="image/png, image/gif, image/jpeg"
-                key={fileInputKey}
                 onChange={handleFileInputChange}
               />
             </Button>
