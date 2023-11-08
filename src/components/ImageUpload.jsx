@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Navbar from "./Header";
 import Footer from "./Footer";
 import { Box, Button, Typography } from "@mui/material";
@@ -8,25 +8,34 @@ import UploadedImageCard from "./UploadedImageCard";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import PermMediaIcon from "@mui/icons-material/PermMedia";
-import { useDispatch,useSelector} from "react-redux";
-import { addProduct, decrementCountProducts, incrementCountProducts } from "../reducers/actions";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addProduct,
+  calculateTotalCount,
+  decrementCountProducts,
+  incrementCountProducts,
+} from "../reducers/actions";
 
 function ImageUpload() {
-  let files = useSelector((state)=>state.products)
+  let files = useSelector((state) => state.products);
+  let totalCount = useSelector((state) => state.totalCount);
   console.log(files);
-  const dispatch = useDispatch()
-
-  const handleMultipleCardsIncrement = ()=>{
-    dispatch(incrementCountProducts())
-  }
+  console.log("totalcount = ", totalCount);
+  const dispatch = useDispatch();
+  const handleMultipleCardsIncrement = () => {
+    dispatch(incrementCountProducts());
+  };
 
   const handleMultipleCardsDecrement = () => {
-      dispatch(decrementCountProducts());
+    dispatch(decrementCountProducts());
   };
+  useEffect(() => {
+    dispatch(calculateTotalCount());
+  }, [handleMultipleCardsDecrement, handleMultipleCardsIncrement]);
 
   const handleFileInputChange = (e) => {
     const newImage = e.target.files[0];
-    dispatch(addProduct(newImage))
+    dispatch(addProduct(newImage));
   };
 
   const VisuallyHiddenInput = styled("input")({
@@ -67,7 +76,7 @@ function ImageUpload() {
               startIcon={<CloudUploadIcon />}
               sx={{
                 background: "#252526",
-                mb: 2
+                mb: 2,
               }}
             >
               Upload file
@@ -109,11 +118,11 @@ function ImageUpload() {
         </Box>
         <Box sx={{ display: "flex", flexDirection: "row", mt: 2 }}>
           {files.map((item, index) => (
-            <UploadedImageCard
-              key={index}
-              product={item}
-            />
+            <UploadedImageCard key={index} product={item} />
           ))}
+        </Box>
+        <Box>
+          <Button variant="contained">Total Number of prints : {totalCount}</Button>
         </Box>
       </Box>
       <Footer />

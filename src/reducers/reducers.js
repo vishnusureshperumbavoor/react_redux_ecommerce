@@ -4,6 +4,7 @@ import {
   INCREMENT_COUNT_SINGLE_PRODUCT,
   DECREMENT_COUNT_PRODUCTS,
   DECREMENT_COUNT_SINGLE_PRODUCT,
+  CALCULATE_TOTAL_COUNT,
 } from "./actions";
 import { initialState } from "../data/reduxData";
 
@@ -13,7 +14,7 @@ export const productReducer = (state = initialState, action) => {
       const updatedPayload = {
         id: Math.floor(Date.now()),
         fileData: action.payload,
-        count: 0,
+        count: 1,
       };
       return { ...state, products: [...state.products, updatedPayload] };
     case INCREMENT_COUNT_PRODUCTS:
@@ -29,7 +30,7 @@ export const productReducer = (state = initialState, action) => {
       }));
       return { ...state, products: decrementCountOfProducts };
     case INCREMENT_COUNT_SINGLE_PRODUCT:
-        console.log(action.payload);
+      console.log(action.payload);
       const incrementingCountOfSingleProduct = state.products.map((product) => {
         if (product.id === action.payload) {
           return {
@@ -41,17 +42,23 @@ export const productReducer = (state = initialState, action) => {
       });
       return { ...state, products: incrementingCountOfSingleProduct };
     case DECREMENT_COUNT_SINGLE_PRODUCT:
-        console.log(action.payload);
+      console.log(action.payload);
       const decrementingCountOfSingleProduct = state.products.map((product) => {
         if (product.id === action.payload) {
           return {
             ...product,
-            count: Math.max(0,product.count - 1),
+            count: Math.max(0, product.count - 1),
           };
         }
         return product;
       });
       return { ...state, products: decrementingCountOfSingleProduct };
+    case CALCULATE_TOTAL_COUNT:
+      const totalCount = state.products.reduce(
+        (sum, product) => sum + product.count,
+        0
+      );
+      return { ...state, totalCount };
     default:
       return state;
   }
