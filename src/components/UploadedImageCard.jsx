@@ -15,8 +15,8 @@ function UploadedImageCard({ product }) {
     const dispatch = useDispatch()
   const params = useParams();
   let productId = Number(params.id);
-  productId = productData.find((product) => product.id === productId);
-  if (!productId) {
+  const widthId = productData.find((product) => product.id === productId);
+  if (!widthId) {
     return <NotFound />;
   }
   const handleSingleCardIncrement = () => {
@@ -41,7 +41,7 @@ function UploadedImageCard({ product }) {
             <img
               src={URL.createObjectURL(product.fileData)}
               height="140"
-              width={product.uploadImageWidth}
+              width={widthId.uploadImageWidth}
               alt="Uploaded"
               style={{
                 borderRadius: 2,
