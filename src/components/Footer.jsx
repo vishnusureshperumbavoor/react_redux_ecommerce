@@ -1,13 +1,14 @@
-import React from 'react'
+import React from "react";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import { useParams } from 'react-router-dom';
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import { useParams } from "react-router-dom";
 
 function Footer() {
-  const {id} = useParams();
+  const { id } = useParams();
   return (
     <div>
       <AppBar position="static" sx={{ background: "#679e1e" }}>
@@ -22,11 +23,16 @@ function Footer() {
             </Button>
             {id && (
               <Button
-                sx={{ background: "#679e1e", border: 1, borderRadius: 2 }}
+                sx={{
+                  background: "#679e1e",
+                  border: 1,
+                  borderRadius: 2,
+                  marginLeft: "auto",
+                }}
                 variant="contained"
               >
-                <ArrowBackIcon sx={{ mr: 1 }} />
-                Back
+                Next
+                <ArrowForwardIcon sx={{ ml: 1 }} />
               </Button>
             )}
           </Toolbar>
@@ -36,4 +42,4 @@ function Footer() {
   );
 }
 
-export default Footer
+export default Footer;
