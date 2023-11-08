@@ -1,27 +1,38 @@
 import React from "react";
 import Navbar from "./Header";
 import Footer from "./Footer";
-import { Box, Button, Container, Typography } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import { styled } from "@mui/material/styles";
-import { productData } from "../data/data";
-import ImageCard from "./ImageCard";
 import { useState } from "react";
 import UploadedImageCard from "./UploadedImageCard";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import PermMediaIcon from "@mui/icons-material/PermMedia";
+import { useDispatch,useSelector} from "react-redux";
+import { addPost } from "../reducers/actions";
 
 function ImageUpload() {
+  let files = useSelector((state)=>state)
+  console.log(files);
+  const dispatch = useDispatch()
   const [uploadData, setUploadData] = useState([]);
   const [fileInputKey, setFileInputKey] = useState(0);
+  const [cardsCount,setCardsCount] = useState(0)
 
-  // const handleUploadButtonClick = (e) => {
-  //   e.target.nextSibling;
-  // };
+  const handleMultipleCardsIncrement = ()=>{
+    setCardsCount(cardsCount+1)
+  }
+
+  const handleMultipleCardsDecrement = () => {
+    if(cardsCount>0){
+      setCardsCount(cardsCount-1);
+    }
+  };
 
   const handleFileInputChange = (e) => {
     const newImage = e.target.files[0];
+    dispatch(addPost(newImage))
     if (newImage) {
       setUploadData((prevImages) => [...prevImages, newImage]);
       setFileInputKey((prevKey) => prevKey + 1);
@@ -66,9 +77,7 @@ function ImageUpload() {
               startIcon={<CloudUploadIcon />}
               sx={{
                 background: "#252526",
-                mb: 2,
-
-                // justifyContent:"center"
+                mb: 2
               }}
             >
               Upload file
@@ -89,6 +98,7 @@ function ImageUpload() {
                 mb: 2,
                 mr: 2,
               }}
+              onClick={handleMultipleCardsIncrement}
             >
               <PermMediaIcon />
               <AddIcon />
@@ -101,6 +111,7 @@ function ImageUpload() {
                 mb: 2,
                 mr: 2,
               }}
+              onClick={handleMultipleCardsDecrement}
             >
               <PermMediaIcon />
               <RemoveIcon />
@@ -108,8 +119,12 @@ function ImageUpload() {
           </Box>
         </Box>
         <Box sx={{ display: "flex", flexDirection: "row", mt: 2 }}>
-          {uploadData.map((image, index) => (
-            <UploadedImageCard key={index} image={image} />
+          {files.map((item, index) => (
+            <UploadedImageCard
+              key={index}
+              image={item.fileData}
+              count={item.count}
+            />
           ))}
         </Box>
       </Box>

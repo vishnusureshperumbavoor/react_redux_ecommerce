@@ -3,7 +3,6 @@ import Navbar from "./Header";
 import Footer from "./Footer";
 import {
   Card,
-  CardActionArea,
   CardContent,
   Container,
   Typography,
