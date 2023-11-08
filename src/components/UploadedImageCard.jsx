@@ -8,22 +8,22 @@ import NotFound from "./NotFound";
 import { Box, Button } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
+import { useDispatch } from "react-redux";
+import { decrementCountSingleProduct, incrementCountSingleProduct } from "../reducers/actions";
 
-function UploadedImageCard({ image, count }) {
-  const [state, setState] = useState(count);
+function UploadedImageCard({ product }) {
+    const dispatch = useDispatch()
   const params = useParams();
-  const productId = Number(params.id);
-  let product = productData.find((product) => product.id === productId);
-  if (!product) {
+  let productId = Number(params.id);
+  productId = productData.find((product) => product.id === productId);
+  if (!productId) {
     return <NotFound />;
   }
   const handleSingleCardIncrement = () => {
-    setState(state + 1);
+    dispatch(incrementCountSingleProduct(product.id))
   };
   const handleSingleCardDecrement = () => {
-    if (state > 0) {
-      setState(state - 1);
-    }
+    dispatch(decrementCountSingleProduct(product.id));
   };
   return (
     <div>
@@ -39,7 +39,7 @@ function UploadedImageCard({ image, count }) {
         >
           <CardContent>
             <img
-              src={URL.createObjectURL(image)}
+              src={URL.createObjectURL(product.fileData)}
               height="140"
               width={product.uploadImageWidth}
               alt="Uploaded"
@@ -73,7 +73,7 @@ function UploadedImageCard({ image, count }) {
               >
                 <AddIcon />
               </Button>
-              <Typography sx={{ margin: "auto" }}>{count}</Typography>
+              <Typography sx={{ margin: "auto" }}>{product.count}</Typography>
               <Button
                 component="label"
                 variant="contained"

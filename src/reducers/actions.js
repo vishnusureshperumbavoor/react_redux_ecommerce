@@ -1,6 +1,6 @@
 export const ADD_PRODUCT = "ADD_PRODUCT";
-export const INCREMENT_COUNT_SINGLE_PRODUCTS = "INCREMENT_COUNT_SINGLE_PRODUCTS";
-export const DECREMENT_COUNT_SINGLE_PRODUCTS = "DECREMENT_COUNT_SINGLE_PRODUCTS";
+export const INCREMENT_COUNT_SINGLE_PRODUCT = "INCREMENT_COUNT_SINGLE_PRODUCT";
+export const DECREMENT_COUNT_SINGLE_PRODUCT = "DECREMENT_COUNT_SINGLE_PRODUCT";
 export const INCREMENT_COUNT_PRODUCTS = "INCREMENT_COUNT_PRODUCTS";
 export const DECREMENT_COUNT_PRODUCTS = "DECREMENT_COUNT_PRODUCTS";
 
@@ -11,17 +11,17 @@ export const addProduct = (product) => {
   };
 };
 
-export const incrementCountSingleProducts = (products) => {
+export const incrementCountSingleProduct = (productId) => {
   return {
-    type: INCREMENT_COUNT_PRODUCTS,
-    payload: products
+    type: INCREMENT_COUNT_SINGLE_PRODUCT,
+    payload: productId
   };
 };
 
-export const decrementCountSingleProducts = (products) => {
+export const decrementCountSingleProduct = (productId) => {
   return {
-    type: DECREMENT_COUNT_PRODUCTS,
-    payload: products,
+    type: DECREMENT_COUNT_SINGLE_PRODUCT,
+    payload: productId,
   };
 };
 

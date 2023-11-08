@@ -4,7 +4,6 @@ import Footer from "./Footer";
 import { Box, Button, Typography } from "@mui/material";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import { styled } from "@mui/material/styles";
-import { useState } from "react";
 import UploadedImageCard from "./UploadedImageCard";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
@@ -16,16 +15,13 @@ function ImageUpload() {
   let files = useSelector((state)=>state.products)
   console.log(files);
   const dispatch = useDispatch()
-  const [cardsCount,setCardsCount] = useState(0)
 
   const handleMultipleCardsIncrement = ()=>{
     dispatch(incrementCountProducts())
   }
 
   const handleMultipleCardsDecrement = () => {
-    // if(cardsCount>0){
       dispatch(decrementCountProducts());
-    // }
   };
 
   const handleFileInputChange = (e) => {
@@ -115,8 +111,7 @@ function ImageUpload() {
           {files.map((item, index) => (
             <UploadedImageCard
               key={index}
-              image={item.fileData}
-              count={item.count}
+              product={item}
             />
           ))}
         </Box>
