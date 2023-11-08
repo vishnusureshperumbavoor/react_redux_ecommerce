@@ -3,12 +3,18 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function ImageCard({ product }) {
+  const navigate = useNavigate()
+
+  const handleProductClick = ()=>{
+    console.log(product);
+    // navigate(`/printtype/${product.id}`);
+  }
+
   return (
     <div>
-      <Link to={`/printtype/${product.id}`} style={{ textDecoration: "none" }}>
         <Card
           sx={{
             minHeight: 260,
@@ -18,6 +24,7 @@ function ImageCard({ product }) {
             flexDirection: "column",
             justifyContent: "flex-end",
           }}
+          onClick={handleProductClick}
         >
           <CardActionArea>
             <CardContent>
@@ -39,11 +46,10 @@ function ImageCard({ product }) {
                 Size : {product.inchSize} <br />
                 <Typography sx={{ fontSize: 14 }}>{product.mmSize}</Typography>
               </Typography>
-              <Typography>Price: {product.price}</Typography>
+              <Typography>Price: ₹{product.price}</Typography>
             </CardContent>
           </CardActionArea>
         </Card>
-      </Link>
     </div>
   );
 }

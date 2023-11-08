@@ -5,10 +5,11 @@ import {
   DECREMENT_COUNT_PRODUCTS,
   DECREMENT_COUNT_SINGLE_PRODUCT,
   CALCULATE_TOTAL_COUNT,
+  ADD_SIZE_AND_PRICE,
 } from "./actions";
 import { initialState } from "../data/reduxData";
 
-export const productReducer = (state = initialState, action) => {
+export const productReducer = (state = initialState.products, action) => {
   switch (action.type) {
     case ADD_PRODUCT:
       const updatedPayload = {
@@ -61,5 +62,21 @@ export const productReducer = (state = initialState, action) => {
       return { ...state, totalCount };
     default:
       return state;
+  }
+};
+
+export const productPropertiesReducer = (
+  state = initialState.productProperties,
+  action
+) => {
+  switch (action.type) {
+    case ADD_SIZE_AND_PRICE:
+        console.log(action.payload);
+    //     const updatedPayload = {
+    //     id: Math.floor(Date.now()),
+    //     fileData: action.payload,
+    //     count: 1,
+    //   };
+    //   return { ...state, products: [...state.products, updatedPayload] };
   }
 };
