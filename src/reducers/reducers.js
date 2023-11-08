@@ -10,14 +10,21 @@ import { initialState } from "../data/reduxData";
 export const productReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_PRODUCT:
+      console.log("adding product");
       const updatedPayload = { fileData: action.payload, count: 0 };
       return { ...state, products: [...state.products, updatedPayload] };
     case INCREMENT_COUNT_PRODUCTS:
-      const updatedProducts = state.products.map((product) => ({
+      const incrementCountOfProducts = state.products.map((product) => ({
         ...product,
         count: product.count + 1,
       }));
-      return { ...state, products: updatedProducts };
+      return { ...state, products: incrementCountOfProducts };
+    case DECREMENT_COUNT_PRODUCTS:
+      const decrementCountOfProducts = state.products.map((product) => ({
+        ...product,
+        count: Math.max(0, product.count - 1),
+      }));
+      return { ...state, products: decrementCountOfProducts };
     default:
       return state;
   }

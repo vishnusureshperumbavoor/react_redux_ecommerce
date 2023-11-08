@@ -73,7 +73,7 @@ function UploadedImageCard({ image, count }) {
               >
                 <AddIcon />
               </Button>
-              <Typography sx={{ margin: "auto" }}>{state}</Typography>
+              <Typography sx={{ margin: "auto" }}>{count}</Typography>
               <Button
                 component="label"
                 variant="contained"

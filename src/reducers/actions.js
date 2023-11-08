@@ -31,9 +31,8 @@ export const incrementCountProducts = () => {
   };
 };
 
-export const decrementCountProducts = (products) => {
+export const decrementCountProducts = () => {
   return {
-    type: DECREMENT_COUNT_PRODUCTS,
-    payload: products,
+    type: DECREMENT_COUNT_PRODUCTS
   };
 };

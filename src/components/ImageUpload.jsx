@@ -10,7 +10,7 @@ import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import PermMediaIcon from "@mui/icons-material/PermMedia";
 import { useDispatch,useSelector} from "react-redux";
-import { addProduct, incrementCountProducts } from "../reducers/actions";
+import { addProduct, decrementCountProducts, incrementCountProducts } from "../reducers/actions";
 
 function ImageUpload() {
   let files = useSelector((state)=>state.products)
@@ -23,9 +23,9 @@ function ImageUpload() {
   }
 
   const handleMultipleCardsDecrement = () => {
-    if(cardsCount>0){
-      setCardsCount(cardsCount-1);
-    }
+    // if(cardsCount>0){
+      dispatch(decrementCountProducts());
+    // }
   };
 
   const handleFileInputChange = (e) => {
