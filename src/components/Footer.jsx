@@ -5,10 +5,17 @@ import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import { useParams } from "react-router-dom";
+import { useParams, Link,useNavigate } from "react-router-dom";
+import { productData } from "../data/data";
 
 function Footer() {
   const { id } = useParams();
+  const productId = Number(id);
+  let product = productData.find((product) => product.id === productId);
+  const navigate = useNavigate()
+  const handleNextClick = () => {
+    navigate(`/imageupload/${product.id}`)
+  };
   return (
     <div>
       <AppBar position="static" sx={{ background: "#679e1e" }}>
@@ -30,6 +37,7 @@ function Footer() {
                   marginLeft: "auto",
                 }}
                 variant="contained"
+                onClick={handleNextClick}
               >
                 Next
                 <ArrowForwardIcon sx={{ ml: 1 }} />

@@ -9,9 +9,13 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import LocalPrintshopIcon from "@mui/icons-material/LocalPrintshop";
 import HomeIcon from "@mui/icons-material/Home";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Navbar() {
+  const navigate = useNavigate();
+  const handleHomeButtonClick = () => {
+    navigate("/");
+  };
   return (
     <div>
       <AppBar
@@ -23,25 +27,24 @@ function Navbar() {
             <LocalPrintshopIcon
               sx={{ display: { xs: "none", md: "flex" }, mr: 1, color: "#000" }}
             />
-            <Link to="/" style={{ textDecoration: "none" }}>
-              <Typography
-                variant="h6"
-                noWrap
-                component="a"
-                href="#app-bar-with-responsive-menu"
-                sx={{
-                  mr: 2,
-                  display: { xs: "none", md: "flex" },
-                  fontFamily: "monospace",
-                  fontWeight: 700,
-                  letterSpacing: ".3rem",
-                  color: "#000",
-                  textDecoration: "none",
-                }}
-              >
-                VSP Prints & Gifts
-              </Typography>
-            </Link>
+            <Typography
+            onClick={handleHomeButtonClick}
+              variant="h6"
+              noWrap
+              component="a"
+              href="#app-bar-with-responsive-menu"
+              sx={{
+                mr: 2,
+                display: { xs: "none", md: "flex" },
+                fontFamily: "monospace",
+                fontWeight: 700,
+                letterSpacing: ".3rem",
+                color: "#000",
+                textDecoration: "none",
+              }}
+            >
+              VSP Prints & Gifts
+            </Typography>
 
             <Box sx={{ flexGrow: 0 }}>
               <Tooltip title="Open settings">
@@ -49,7 +52,11 @@ function Navbar() {
                   sx={{ p: 0 }}
                   style={{ position: "absolute", right: 0, top: "20%" }}
                 >
-                  <Button sx={{ background: "#679e1e" }} variant="contained">
+                  <Button
+                    sx={{ background: "#679e1e" }}
+                    variant="contained"
+                    onClick={handleHomeButtonClick}
+                  >
                     <HomeIcon sx={{ mr: 1 }} />
                     Home
                   </Button>

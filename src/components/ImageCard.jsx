@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 function ImageCard({ product }) {
   return (
     <div>
-      <Link to={`/${product.id}`} style={{ textDecoration: "none" }}>
+      <Link to={`/printtype/${product.id}`} style={{ textDecoration: "none" }}>
         <Card
           sx={{
             minHeight: 260,

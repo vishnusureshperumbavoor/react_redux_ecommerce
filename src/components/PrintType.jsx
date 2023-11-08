@@ -1,5 +1,5 @@
 import React from "react";
-import Navbar from "./Navbar";
+import Navbar from "./Header";
 import Footer from "./Footer";
 import {
   Card,
@@ -39,7 +39,7 @@ function PrintType() {
   }
   return (
     <>
-    <Navbar/>
+      <Navbar />
       <div style={{ minHeight: "537px" }}>
         <Container>
           <Box>
@@ -148,7 +148,7 @@ function PrintType() {
           </Box>
         </Container>
       </div>
-      <Footer/>
+      <Footer />
     </>
   );
 }

@@ -8,6 +8,7 @@ export const productData = [
     price: "₹70",
     height: 48,
     width: 72,
+    uploadImageWidth:210,
   },
   {
     id: 1699354943667,
@@ -18,6 +19,7 @@ export const productData = [
     price: "₹170",
     height: 60,
     width: 84,
+    uploadImageWidth:196,
   },
   {
     id: 1699354943668,
@@ -28,6 +30,7 @@ export const productData = [
     price: "₹250",
     height: 72,
     width: 96,
+    uploadImageWidth:186.66,
   },
   {
     id: 1699354943669,
@@ -38,6 +41,7 @@ export const productData = [
     price: "₹830",
     height: 96,
     width: 120,
+    uploadImageWidth:175,
   },
   {
     id: 1699354943670,
@@ -48,6 +52,7 @@ export const productData = [
     price: "₹1000",
     height: 120,
     width: 180,
+    uploadImageWidth:210,
   },
   {
     id: 1699354943671,
@@ -58,5 +63,6 @@ export const productData = [
     price: "₹70",
     height: 42,
     width: 42,
+    uploadImageWidth:140,
   },
 ];

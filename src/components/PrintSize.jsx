@@ -1,15 +1,14 @@
 import React from "react";
-import Navbar from "./Navbar";
+import Navbar from "./Header";
 import Footer from "./Footer";
 import { Box, Container, Typography } from "@mui/material";
 import ImageCard from "./ImageCard";
 import { productData } from "../data/data";
 
-
 function PrintSize() {
   return (
     <>
-    <Navbar/>
+      <Navbar />
       <div style={{ minHeight: "537px" }}>
         <Container maxWidth="xl">
           <Box sx={{ borderBottom: 2, borderColor: "#679e1e" }}>
@@ -26,7 +25,7 @@ function PrintSize() {
           </Box>
         </Container>
       </div>
-      <Footer/>
+      <Footer />
     </>
   );
 }
