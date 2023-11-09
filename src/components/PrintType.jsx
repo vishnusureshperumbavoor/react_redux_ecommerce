@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Navbar from "./Header";
 import Footer from "./Footer";
 import { Card, CardContent, Container, Typography } from "@mui/material";
@@ -17,30 +17,26 @@ function PrintType() {
   let product = productData.find((product) => product.id === productId);
   const [paperType, setPaperType] = useState("glossy");
   const [border, setBorder] = useState("border");
-
-  let properties = {};
+  const [properties, setProperties] = useState({});
 
   const handlePaperType = (e, newPaperType) => {
     e.preventDefault();
     setPaperType(newPaperType);
-    properties = {
-      paperType: newPaperType,
-      border: border,
-    };
   };
 
   const handleBorder = (e, newBorder) => {
     e.preventDefault();
     setBorder(newBorder);
-    properties = {
-      paperType: paperType,
-      border: newBorder,
-    };
   };
+
+  useEffect(() => {
+    setProperties({ paperType, border });
+  }, [paperType, border]);
 
   if (!product) {
     return <NotFound />;
   }
+  
   return (
     <>
       <Navbar />
