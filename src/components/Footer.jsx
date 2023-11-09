@@ -8,7 +8,8 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { useParams, Link,useNavigate } from "react-router-dom";
 import { productData } from "../data/data";
 
-function Footer() {
+function Footer({properties}) {
+  console.log(properties);
   const { id } = useParams();
   const productId = Number(id);
   let product = productData.find((product) => product.id === productId);

@@ -1,12 +1,7 @@
 import React from "react";
 import Navbar from "./Header";
 import Footer from "./Footer";
-import {
-  Card,
-  CardContent,
-  Container,
-  Typography,
-} from "@mui/material";
+import { Card, CardContent, Container, Typography } from "@mui/material";
 import { useParams } from "react-router-dom";
 import { productData } from "../data/data";
 import NotFound from "./NotFound";
@@ -15,27 +10,32 @@ import Paper from "@mui/material/Paper";
 import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import { useState } from "react";
-import { useSelector } from "react-redux";
 
 function PrintType() {
-  let files = useSelector((state) => state.products);
-  let properties  = useSelector((state)=>state.properties)
-  console.log(files);
-  console.log(properties);
   const params = useParams();
   const productId = Number(params.id);
   let product = productData.find((product) => product.id === productId);
   const [paperType, setPaperType] = useState("glossy");
   const [border, setBorder] = useState("border");
 
-  const handlePaperType = (e, newAlignment) => {
+  let properties = {};
+
+  const handlePaperType = (e, newPaperType) => {
     e.preventDefault();
-    setPaperType(newAlignment);
+    setPaperType(newPaperType);
+    properties = {
+      paperType: newPaperType,
+      border: border,
+    };
   };
 
-  const handleBorder = (e, newAlignment) => {
+  const handleBorder = (e, newBorder) => {
     e.preventDefault();
-    setBorder(newAlignment);
+    setBorder(newBorder);
+    properties = {
+      paperType: paperType,
+      border: newBorder,
+    };
   };
 
   if (!product) {
@@ -152,7 +152,7 @@ function PrintType() {
           </Box>
         </Container>
       </div>
-      <Footer />
+      <Footer properties={properties} />
     </>
   );
 }
