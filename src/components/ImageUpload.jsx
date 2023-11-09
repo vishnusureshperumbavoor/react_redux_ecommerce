@@ -14,12 +14,16 @@ import Container from "@mui/material/Container";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { useNavigate } from "react-router-dom";
+import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import {
   addProduct,
   calculateTotalCount,
   decrementCountProducts,
   incrementCountProducts,
 } from "../reducers/actions";
+import Badge from "@mui/material/Badge";
+import IconButton from "@mui/material/IconButton";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
 function ImageUpload() {
   const navigate = useNavigate();
@@ -159,7 +163,16 @@ function ImageUpload() {
             <Button variant="contained" sx={{ mr: 2 }}>
               Total Number of prints : {totalCount}
             </Button>
-            <Button variant="contained">Total Price : ₹{totalPrice}</Button>
+            <Button variant="contained" sx={{ mr: 2 }}>
+              Total Price : ₹{totalPrice}
+            </Button>
+            <Button
+              variant="contained"
+              style={{ background: "green" }}
+              startIcon={<AddShoppingCartIcon />}
+            >
+              Add to Cart
+            </Button>
           </Box>
         </Box>
       </div>
@@ -184,6 +197,9 @@ function ImageUpload() {
               variant="contained"
               onClick={handleCartClick}
             >
+              <Badge badgeContent={4} color="success" sx={{mr:2}}>
+                <AddShoppingCartIcon color="action" />
+              </Badge>
               Cart
               <ArrowForwardIcon sx={{ ml: 1 }} />
             </Button>
