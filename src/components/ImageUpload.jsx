@@ -20,10 +20,9 @@ import {
   calculateTotalCount,
   decrementCountProducts,
   incrementCountProducts,
+  updateCart,
 } from "../reducers/actions";
 import Badge from "@mui/material/Badge";
-import IconButton from "@mui/material/IconButton";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
 function ImageUpload() {
   const navigate = useNavigate();
@@ -36,9 +35,12 @@ function ImageUpload() {
   const files = useSelector((state) => state.products.products);
   const totalCount = useSelector((state) => state.products.totalCount);
   const properties = useSelector((state) => state.properties.properties);
+  const cart = useSelector((state) => state.cart);
   console.log(files);
   console.log(totalCount);
   console.log(properties);
+  console.log(cart);
+  console.log(cart.length);
   const totalPrice = totalCount * properties.price;
   const dispatch = useDispatch();
   const handleMultipleCardsIncrement = () => {
@@ -48,6 +50,11 @@ function ImageUpload() {
   const handleMultipleCardsDecrement = () => {
     dispatch(decrementCountProducts());
   };
+
+  const handleAddToCart = () => {
+    dispatch(updateCart(files));
+  };
+
   useEffect(() => {
     dispatch(calculateTotalCount());
   }, [handleMultipleCardsDecrement, handleMultipleCardsIncrement]);
@@ -56,6 +63,8 @@ function ImageUpload() {
     const newImage = e.target.files[0];
     dispatch(addProduct(newImage));
   };
+
+  
 
   const VisuallyHiddenInput = styled("input")({
     clip: "rect(0 0 0 0)",
@@ -170,6 +179,7 @@ function ImageUpload() {
               variant="contained"
               style={{ background: "green" }}
               startIcon={<AddShoppingCartIcon />}
+              onClick={handleAddToCart}
             >
               Add to Cart
             </Button>
@@ -197,7 +207,7 @@ function ImageUpload() {
               variant="contained"
               onClick={handleCartClick}
             >
-              <Badge badgeContent={4} color="success" sx={{mr:2}}>
+              <Badge badgeContent={cart.length} color="success" sx={{mr:2}}>
                 <AddShoppingCartIcon color="action" />
               </Badge>
               Cart

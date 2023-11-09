@@ -8,17 +8,20 @@ import { Box, Button } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import { useDispatch, useSelector } from "react-redux";
-import { decrementCountSingleProduct, incrementCountSingleProduct } from "../reducers/actions";
+import {
+  decrementCountSingleProduct,
+  incrementCountSingleProduct,
+} from "../reducers/actions";
 import DeleteIcon from "@mui/icons-material/Delete";
 
 function UploadedImageCard({ product }) {
-    const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const properties = useSelector((state) => state.properties.properties);
   if (!properties) {
     return <NotFound />;
   }
   const handleSingleCardIncrement = () => {
-    dispatch(incrementCountSingleProduct(product.id))
+    dispatch(incrementCountSingleProduct(product.id));
   };
   const handleSingleCardDecrement = () => {
     dispatch(decrementCountSingleProduct(product.id));
@@ -85,7 +88,12 @@ function UploadedImageCard({ product }) {
                 <AddIcon />
               </Button>
             </Box>
-            <Button variant="contained" style={{background:"red"}} startIcon={<DeleteIcon />}>
+            <Button
+              variant="contained"
+              style={{ background: "red" }}
+              sx={{ height: 30 }}
+              startIcon={<DeleteIcon />}
+            >
               Remove
             </Button>
           </CardContent>
