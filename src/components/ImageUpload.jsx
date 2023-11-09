@@ -29,7 +29,9 @@ function ImageUpload() {
   const files = useSelector((state) => state.products.products);
   const totalCount = useSelector((state) => state.products.totalCount);
   const properties = useSelector((state) => state.properties.properties);
-  
+
+  console.log(properties);
+
   const totalPrice = totalCount * properties.price;
   const dispatch = useDispatch();
   const handleMultipleCardsIncrement = () => {
@@ -63,14 +65,18 @@ function ImageUpload() {
     <>
       <div>
         <Navbar />
-        <Box sx={{ minHeight: 537 }}>
-          <Box></Box>
-          <Typography sx={{ textAlign: "left", ml: 1 }}>
-            Size : {properties.inchSize}" ({properties.mmSize})
-          </Typography>
-          <Typography sx={{ textAlign: "left", ml: 1 }}>
-            Price : ₹{properties.price}
-          </Typography>
+        <Box sx={{ minHeight: 577 }}>
+          <Box sx={{ textAlign: "left", ml: 1 }}>
+            <Typography sx={{ fontSize: 12 }}>
+              Size : {properties.inchSize}" ({properties.mmSize})
+            </Typography>
+            <Typography sx={{ fontSize: 12 }}>
+              Price : ₹{properties.price}
+            </Typography>
+            <Typography sx={{ fontSize: 12 }}>
+              {properties.paperType}/{properties.border}
+            </Typography>
+          </Box>
           <Typography sx={{ fontFamily: "Times New Roman", fontSize: 20 }}>
             Please select number of prints
           </Typography>
@@ -164,19 +170,19 @@ function ImageUpload() {
               <ArrowBackIcon sx={{ mr: 1 }} />
               Back
             </Button>
-              <Button
-                sx={{
-                  background: "#679e1e",
-                  border: 1,
-                  borderRadius: 2,
-                  marginLeft: "auto",
-                }}
-                variant="contained"
-                onClick={handleCartClick}
-              >
-                Cart
-                <ArrowForwardIcon sx={{ ml: 1 }} />
-              </Button>
+            <Button
+              sx={{
+                background: "#679e1e",
+                border: 1,
+                borderRadius: 2,
+                marginLeft: "auto",
+              }}
+              variant="contained"
+              onClick={handleCartClick}
+            >
+              Cart
+              <ArrowForwardIcon sx={{ ml: 1 }} />
+            </Button>
           </Toolbar>
         </Container>
       </AppBar>
