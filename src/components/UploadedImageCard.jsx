@@ -10,6 +10,7 @@ import RemoveIcon from "@mui/icons-material/Remove";
 import { useDispatch, useSelector } from "react-redux";
 import {
   decrementCountSingleProduct,
+  deleteProduct,
   incrementCountSingleProduct,
 } from "../reducers/actions";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -26,6 +27,9 @@ function UploadedImageCard({ product }) {
   const handleSingleCardDecrement = () => {
     dispatch(decrementCountSingleProduct(product.id));
   };
+  const handleRemoveFiles = ()=>{
+    dispatch(deleteProduct(product.id))
+  }
   return (
     <div>
       <div>
@@ -93,6 +97,7 @@ function UploadedImageCard({ product }) {
               style={{ background: "red" }}
               sx={{ height: 30 }}
               startIcon={<DeleteIcon />}
+              onClick={handleRemoveFiles}
             >
               Remove
             </Button>

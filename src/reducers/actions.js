@@ -5,7 +5,8 @@ export const DECREMENT_COUNT_SINGLE_PRODUCT = "DECREMENT_COUNT_SINGLE_PRODUCT";
 export const INCREMENT_COUNT_PRODUCTS = "INCREMENT_COUNT_PRODUCTS";
 export const DECREMENT_COUNT_PRODUCTS = "DECREMENT_COUNT_PRODUCTS";
 export const CALCULATE_TOTAL_COUNT = "CALCULATE_TOTAL_COUNT";
-export const UPDATE_CART = "UPDATE_CART"
+export const UPDATE_CART = "UPDATE_CART";
+export const DELETE_PRODUCT = "DELETE_PRODUCT";
 
 export const updateProperties = (data) => {
   return {
@@ -18,6 +19,13 @@ export const addProduct = (product) => {
   return {
     type: ADD_PRODUCT,
     payload: product,
+  };
+};
+
+export const deleteProduct = (productId) => {
+  return {
+    type: DELETE_PRODUCT,
+    payload: productId,
   };
 };
 
@@ -53,9 +61,9 @@ export const calculateTotalCount = () => {
   };
 };
 
-export const updateCart = (products)=>{
+export const updateCart = (products) => {
   return {
     type: UPDATE_CART,
     payload: products,
   };
-}
+};

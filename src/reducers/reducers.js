@@ -7,6 +7,7 @@ import {
   CALCULATE_TOTAL_COUNT,
   UPDATE_PROPERTIES,
   UPDATE_CART,
+  DELETE_PRODUCT,
 } from "./actions";
 import { initialState } from "../data/reduxData";
 
@@ -44,7 +45,6 @@ export const productReducer = (state = initialState, action) => {
       });
       return { ...state, products: incrementingCountOfSingleProduct };
     case DECREMENT_COUNT_SINGLE_PRODUCT:
-      console.log(action.payload);
       const decrementingCountOfSingleProduct = state.products.map((product) => {
         if (product.id === action.payload) {
           return {
@@ -55,6 +55,11 @@ export const productReducer = (state = initialState, action) => {
         return product;
       });
       return { ...state, products: decrementingCountOfSingleProduct };
+    case DELETE_PRODUCT:
+      const updatedFiles = state.products.filter(
+        (product) => product.id !== action.payload
+      );
+      return { ...state, products: updatedFiles };
     case CALCULATE_TOTAL_COUNT:
       const totalCount = state.products.reduce(
         (sum, product) => sum + product.count,
@@ -83,6 +88,6 @@ export const cartReducer = (state = initialState.cart, action) => {
     case UPDATE_CART:
       return [...state, action.payload];
     default:
-      return state
+      return state;
   }
 };
