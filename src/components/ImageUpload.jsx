@@ -17,12 +17,15 @@ import {
 } from "../reducers/actions";
 
 function ImageUpload() {
-  let files = useSelector((state) => state.products.products);
+  const files = useSelector((state) => state.products.products);
   let totalCount = useSelector((state) => state.products.totalCount);
   let properties = useSelector((state) => state.properties.properties);
   console.log(files);
   console.log("totalcount = ", totalCount);
   console.log(properties);
+  console.log("price = ", properties.price);
+  console.log("totalprice = ", totalCount * properties.price);
+  const totalPrice = totalCount * properties.price;
   const dispatch = useDispatch();
   const handleMultipleCardsIncrement = () => {
     dispatch(incrementCountProducts());
@@ -55,7 +58,14 @@ function ImageUpload() {
     <div>
       <Navbar />
       <Box sx={{ minHeight: 537 }}>
-        <Typography sx={{ mt: 5, fontFamily: "Times New Roman", fontSize: 20 }}>
+        <Box></Box>
+        <Typography sx={{ textAlign: "left", ml: 1}}>
+          Size : {properties.inchSize}" ({properties.mmSize})
+        </Typography>
+        <Typography sx={{ textAlign: "left",ml:1 }}>
+          Price : ₹{properties.price}
+        </Typography>
+        <Typography sx={{fontFamily: "Times New Roman", fontSize: 20 }}>
           Please select number of prints
         </Typography>
         <Box
@@ -98,10 +108,10 @@ function ImageUpload() {
                 mb: 2,
                 mr: 2,
               }}
-              onClick={handleMultipleCardsIncrement}
+              onClick={handleMultipleCardsDecrement}
             >
               <PermMediaIcon />
-              <AddIcon />
+              <RemoveIcon />
             </Button>
             <Button
               component="label"
@@ -111,20 +121,30 @@ function ImageUpload() {
                 mb: 2,
                 mr: 2,
               }}
-              onClick={handleMultipleCardsDecrement}
+              onClick={handleMultipleCardsIncrement}
             >
               <PermMediaIcon />
-              <RemoveIcon />
+              <AddIcon />
             </Button>
           </Box>
         </Box>
-        <Box sx={{ display: "flex", flexDirection: "row", mt: 2 }}>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            mt: 2,
+            pb: 2,
+          }}
+        >
           {files.map((item, index) => (
             <UploadedImageCard key={index} product={item} />
           ))}
         </Box>
-        <Box>
-          <Button variant="contained">Total Number of prints : {totalCount}</Button>
+        <Box sx={{ mt: 3 }}>
+          <Button variant="contained" sx={{ mr: 2 }}>
+            Total Number of prints : {totalCount}
+          </Button>
+          <Button variant="contained">Total Price : ₹{totalPrice}</Button>
         </Box>
       </Box>
     </div>

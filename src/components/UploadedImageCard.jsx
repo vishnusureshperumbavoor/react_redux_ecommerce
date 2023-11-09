@@ -69,9 +69,9 @@ function UploadedImageCard({ product }) {
                   mb: 2,
                   mr: 2,
                 }}
-                onClick={handleSingleCardIncrement}
+                onClick={handleSingleCardDecrement}
               >
-                <AddIcon />
+                <RemoveIcon />
               </Button>
               <Typography sx={{ margin: "auto" }}>{product.count}</Typography>
               <Button
@@ -82,9 +82,9 @@ function UploadedImageCard({ product }) {
                   mb: 2,
                   ml: 2,
                 }}
-                onClick={handleSingleCardDecrement}
+                onClick={handleSingleCardIncrement}
               >
-                <RemoveIcon />
+                <AddIcon />
               </Button>
             </Box>
           </CardContent>
