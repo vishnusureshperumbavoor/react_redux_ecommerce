@@ -15,7 +15,7 @@ function ImageCard({ product }) {
   
   const handleProductClick = ()=>{
     dispatch(updateProperties(product));
-    navigate(`/printtype/${product.id}`);
+    navigate(`/printtype`);
   }
   useEffect(() => {
     console.log(properties);

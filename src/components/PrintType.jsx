@@ -1,8 +1,6 @@
 import React, { useEffect } from "react";
 import Navbar from "./Header";
 import { Card, CardContent, Container, Typography } from "@mui/material";
-import { useParams } from "react-router-dom";
-import { productData } from "../data/data";
 import NotFound from "./NotFound";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
@@ -19,36 +17,32 @@ import { useDispatch, useSelector } from "react-redux";
 import { updateProperties } from "../reducers/actions";
 
 function PrintType() {
-  const selector =  useSelector((state)=>state.properties)
-  console.log(selector);
   const [paperType, setPaperType] = useState("glossy");
   const [border, setBorder] = useState("border");
   const [properties, setProperties] = useState({});
-  const { id } = useParams();
-  const productId = Number(id);
-  let product = productData.find((product) => product.id === productId);
+  const property = useSelector((state) => state.properties.properties);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  
+
   const handlePaperType = (e, newPaperType) => {
     e.preventDefault();
     setPaperType(newPaperType);
   };
-  
+
   const handleBorder = (e, newBorder) => {
     e.preventDefault();
     setBorder(newBorder);
   };
-  
+
   useEffect(() => {
     setProperties({ paperType, border });
   }, [paperType, border]);
-  
+
   const handleNextClick = () => {
     dispatch(updateProperties(properties));
-    navigate(`/imageupload/${product.id}`);
+    navigate(`/imageupload`);
   };
-  if (!product) {
+  if (!property) {
     return <NotFound />;
   }
 
@@ -109,9 +103,9 @@ function PrintType() {
                       >
                         <CardContent>
                           <img
-                            src={product.imageURL}
-                            height={product.height}
-                            width={product.width}
+                            src={property.imageURL}
+                            height={property.height}
+                            width={property.width}
                             alt=""
                             style={{
                               borderRadius: 2,
@@ -136,9 +130,9 @@ function PrintType() {
                       >
                         <CardContent>
                           <img
-                            src={product.imageURL}
-                            height={product.height}
-                            width={product.width}
+                            src={property.imageURL}
+                            height={property.height}
+                            width={property.width}
                             alt=""
                             style={{
                               padding: 2,
@@ -170,21 +164,19 @@ function PrintType() {
               <ArrowBackIcon sx={{ mr: 1 }} />
               Back
             </Button>
-            {id && (
-              <Button
-                sx={{
-                  background: "#679e1e",
-                  border: 1,
-                  borderRadius: 2,
-                  marginLeft: "auto",
-                }}
-                variant="contained"
-                onClick={handleNextClick}
-              >
-                Next
-                <ArrowForwardIcon sx={{ ml: 1 }} />
-              </Button>
-            )}
+            <Button
+              sx={{
+                background: "#679e1e",
+                border: 1,
+                borderRadius: 2,
+                marginLeft: "auto",
+              }}
+              variant="contained"
+              onClick={handleNextClick}
+            >
+              Next
+              <ArrowForwardIcon sx={{ ml: 1 }} />
+            </Button>
           </Toolbar>
         </Container>
       </AppBar>

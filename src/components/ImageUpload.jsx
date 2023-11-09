@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import Navbar from "./Header";
-import Footer from "./Footer";
 import { Box, Button, Typography } from "@mui/material";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import { styled } from "@mui/material/styles";
@@ -9,6 +8,12 @@ import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import PermMediaIcon from "@mui/icons-material/PermMedia";
 import { useDispatch, useSelector } from "react-redux";
+import AppBar from "@mui/material/AppBar";
+import Toolbar from "@mui/material/Toolbar";
+import Container from "@mui/material/Container";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import { useNavigate } from "react-router-dom";
 import {
   addProduct,
   calculateTotalCount,
@@ -17,14 +22,14 @@ import {
 } from "../reducers/actions";
 
 function ImageUpload() {
+  const navigate = useNavigate();
+  const handleCartClick = () => {
+    navigate(`/cart`);
+  };
   const files = useSelector((state) => state.products.products);
-  let totalCount = useSelector((state) => state.products.totalCount);
-  let properties = useSelector((state) => state.properties.properties);
-  console.log(files);
-  console.log("totalcount = ", totalCount);
-  console.log(properties);
-  console.log("price = ", properties.price);
-  console.log("totalprice = ", totalCount * properties.price);
+  const totalCount = useSelector((state) => state.products.totalCount);
+  const properties = useSelector((state) => state.properties.properties);
+  
   const totalPrice = totalCount * properties.price;
   const dispatch = useDispatch();
   const handleMultipleCardsIncrement = () => {
@@ -55,99 +60,127 @@ function ImageUpload() {
     width: 1,
   });
   return (
-    <div>
-      <Navbar />
-      <Box sx={{ minHeight: 537 }}>
-        <Box></Box>
-        <Typography sx={{ textAlign: "left", ml: 1}}>
-          Size : {properties.inchSize}" ({properties.mmSize})
-        </Typography>
-        <Typography sx={{ textAlign: "left",ml:1 }}>
-          Price : ₹{properties.price}
-        </Typography>
-        <Typography sx={{fontFamily: "Times New Roman", fontSize: 20 }}>
-          Please select number of prints
-        </Typography>
-        <Box
-          sx={{
-            borderBottom: 2,
-            borderColor: "#679e1e",
-            display: "flex",
-            justifyContent: "space-between",
-          }}
-        >
-          <Box sx={{ marginRight: "auto", mr: 50 }}></Box>
+    <>
+      <div>
+        <Navbar />
+        <Box sx={{ minHeight: 537 }}>
+          <Box></Box>
+          <Typography sx={{ textAlign: "left", ml: 1 }}>
+            Size : {properties.inchSize}" ({properties.mmSize})
+          </Typography>
+          <Typography sx={{ textAlign: "left", ml: 1 }}>
+            Price : ₹{properties.price}
+          </Typography>
+          <Typography sx={{ fontFamily: "Times New Roman", fontSize: 20 }}>
+            Please select number of prints
+          </Typography>
           <Box
             sx={{
-              margin: "auto",
+              borderBottom: 2,
+              borderColor: "#679e1e",
+              display: "flex",
+              justifyContent: "space-between",
             }}
           >
-            <Button
-              component="label"
-              variant="contained"
-              startIcon={<CloudUploadIcon />}
+            <Box sx={{ marginRight: "auto", mr: 50 }}></Box>
+            <Box
               sx={{
-                background: "#252526",
-                mb: 2,
+                margin: "auto",
               }}
             >
-              Upload file
-              <VisuallyHiddenInput
-                type="file"
-                accept="image/png, image/gif, image/jpeg"
-                onChange={handleFileInputChange}
-              />
-            </Button>
+              <Button
+                component="label"
+                variant="contained"
+                startIcon={<CloudUploadIcon />}
+                sx={{
+                  background: "#252526",
+                  mb: 2,
+                }}
+              >
+                Upload file
+                <VisuallyHiddenInput
+                  type="file"
+                  accept="image/png, image/gif, image/jpeg"
+                  onChange={handleFileInputChange}
+                />
+              </Button>
+            </Box>
+            <Box sx={{ marginLeft: "auto" }}>
+              <Button
+                component="label"
+                variant="contained"
+                sx={{
+                  background: "#252526",
+                  mb: 2,
+                  mr: 2,
+                }}
+                onClick={handleMultipleCardsDecrement}
+              >
+                <PermMediaIcon />
+                <RemoveIcon />
+              </Button>
+              <Button
+                component="label"
+                variant="contained"
+                sx={{
+                  background: "#252526",
+                  mb: 2,
+                  mr: 2,
+                }}
+                onClick={handleMultipleCardsIncrement}
+              >
+                <PermMediaIcon />
+                <AddIcon />
+              </Button>
+            </Box>
           </Box>
-          <Box sx={{ marginLeft: "auto" }}>
-            <Button
-              component="label"
-              variant="contained"
-              sx={{
-                background: "#252526",
-                mb: 2,
-                mr: 2,
-              }}
-              onClick={handleMultipleCardsDecrement}
-            >
-              <PermMediaIcon />
-              <RemoveIcon />
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "row",
+              mt: 2,
+              pb: 2,
+            }}
+          >
+            {files.map((item, index) => (
+              <UploadedImageCard key={index} product={item} />
+            ))}
+          </Box>
+          <Box sx={{ mt: 3 }}>
+            <Button variant="contained" sx={{ mr: 2 }}>
+              Total Number of prints : {totalCount}
             </Button>
-            <Button
-              component="label"
-              variant="contained"
-              sx={{
-                background: "#252526",
-                mb: 2,
-                mr: 2,
-              }}
-              onClick={handleMultipleCardsIncrement}
-            >
-              <PermMediaIcon />
-              <AddIcon />
-            </Button>
+            <Button variant="contained">Total Price : ₹{totalPrice}</Button>
           </Box>
         </Box>
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "row",
-            mt: 2,
-            pb: 2,
-          }}
-        >
-          {files.map((item, index) => (
-            <UploadedImageCard key={index} product={item} />
-          ))}
-        </Box>
-        <Box sx={{ mt: 3 }}>
-          <Button variant="contained" sx={{ mr: 2 }}>
-            Total Number of prints : {totalCount}
-          </Button>
-          <Button variant="contained">Total Price : ₹{totalPrice}</Button>
-        </Box>
-      </Box>
-    </div>
+      </div>
+      <AppBar position="static" sx={{ background: "#679e1e" }}>
+        <Container maxWidth="xl">
+          <Toolbar disableGutters>
+            <Button
+              sx={{ background: "#679e1e", border: 1, borderRadius: 2 }}
+              variant="contained"
+            >
+              <ArrowBackIcon sx={{ mr: 1 }} />
+              Back
+            </Button>
+              <Button
+                sx={{
+                  background: "#679e1e",
+                  border: 1,
+                  borderRadius: 2,
+                  marginLeft: "auto",
+                }}
+                variant="contained"
+                onClick={handleCartClick}
+              >
+                Cart
+                <ArrowForwardIcon sx={{ ml: 1 }} />
+              </Button>
+          </Toolbar>
+        </Container>
+      </AppBar>
+    </>
   );
 }
 

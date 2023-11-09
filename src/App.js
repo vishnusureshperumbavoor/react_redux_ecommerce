@@ -13,8 +13,8 @@ function App() {
         <Router>
           <Routes>
             <Route path="/" element={<PrintSize />} />
-            <Route path="/printtype/:id" element={<PrintType />} />
-            <Route path="/imageupload/:id" element={<ImageUpload />} />
+            <Route path="/printtype" element={<PrintType />} />
+            <Route path="/imageupload" element={<ImageUpload />} />
           </Routes>
         </Router>
       </Provider>
