@@ -33,15 +33,15 @@ function Cart() {
   const totalCount = useSelector((state) => state.products.totalCount);
   const properties = useSelector((state) => state.properties.properties);
   const navigate = useNavigate()
-  console.log(files);
-  console.log(properties);
+  const cart = useSelector((state) => state.cart);
+  console.log(cart);
   const handleBackClick = () => {
     navigate(`/imageupload`);
   };
   return (
     <div>
       <Navbar />
-      <Container sx={{minHeight:561}}>
+      <Container sx={{ minHeight: 561 }}>
         <TableContainer component={Paper} sx={{ mt: 2 }}>
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>
@@ -53,17 +53,19 @@ function Cart() {
               </TableRow>
             </TableHead>
             <TableBody>
-              {rows.map((row) => (
+              {cart.map((row,index) => (
                 <TableRow
-                  key={row.name}
+                  key={row.index}
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                 >
                   <TableCell component="th" scope="row">
-                    {row.name}
+                    {/* {row.name} */}
                   </TableCell>
-                  <TableCell align="right">{row.calories}</TableCell>
-                  <TableCell align="right">{row.fat}</TableCell>
-                  <TableCell align="right">{row.carbs}</TableCell>
+                  <TableCell align="right">{row.properties.price}</TableCell>
+                  <TableCell align="right">{row.totalCount}</TableCell>
+                  <TableCell align="right">
+                    {row.properties.price * row.totalCount}
+                  </TableCell>
                 </TableRow>
               ))}
             </TableBody>

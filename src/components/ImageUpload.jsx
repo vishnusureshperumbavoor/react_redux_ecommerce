@@ -36,11 +36,7 @@ function ImageUpload() {
   const totalCount = useSelector((state) => state.products.totalCount);
   const properties = useSelector((state) => state.properties.properties);
   const cart = useSelector((state) => state.cart);
-  console.log(files);
-  console.log(totalCount);
-  console.log(properties);
   console.log(cart);
-  console.log(cart.length);
   const totalPrice = totalCount * properties.price;
   const dispatch = useDispatch();
   const handleMultipleCardsIncrement = () => {
@@ -52,7 +48,12 @@ function ImageUpload() {
   };
 
   const handleAddToCart = () => {
-    dispatch(updateCart(files));
+    const cartDetails={
+      files,
+      properties,
+      totalCount
+    }
+    dispatch(updateCart(cartDetails));
   };
 
   useEffect(() => {
