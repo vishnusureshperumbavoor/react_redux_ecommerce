@@ -1,18 +1,26 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { updateProperties } from "../reducers/actions";
 
 function ImageCard({ product }) {
   const navigate = useNavigate()
-
+  const dispatch = useDispatch()
+  
+  const properties = useSelector((state)=>state.properties)
+  
   const handleProductClick = ()=>{
-    console.log(product);
-    // navigate(`/printtype/${product.id}`);
+    dispatch(updateProperties(product));
+    navigate(`/printtype/${product.id}`);
   }
-
+  useEffect(() => {
+    console.log(properties);
+  }, [handleProductClick]);
+  
   return (
     <div>
         <Card
@@ -43,8 +51,8 @@ function ImageCard({ product }) {
             <CardContent>
               {product.id}
               <Typography gutterBottom component="div">
-                Size : {product.inchSize} <br />
-                <Typography sx={{ fontSize: 14 }}>{product.mmSize}</Typography>
+                Size : {product.inchSize}" <br />
+                <Typography sx={{ fontSize: 14 }}>({product.mmSize})</Typography>
               </Typography>
               <Typography>Price: ₹{product.price}</Typography>
             </CardContent>

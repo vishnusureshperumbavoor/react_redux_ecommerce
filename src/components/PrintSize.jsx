@@ -4,8 +4,11 @@ import Footer from "./Footer";
 import { Box, Container, Typography } from "@mui/material";
 import ImageCard from "./ImageCard";
 import { productData } from "../data/data";
+import { useSelector } from "react-redux";
 
 function PrintSize() {
+  let files = useSelector((state) => state.products);
+  console.log(files);
   return (
     <>
       <Navbar />

@@ -1,14 +1,14 @@
 export const ADD_PRODUCT = "ADD_PRODUCT";
-export const ADD_SIZE_AND_PRICE = "ADD_SIZE_AND_PRICE";
+export const UPDATE_PROPERTIES = "UPDATE_PROPERTIES";
 export const INCREMENT_COUNT_SINGLE_PRODUCT = "INCREMENT_COUNT_SINGLE_PRODUCT";
 export const DECREMENT_COUNT_SINGLE_PRODUCT = "DECREMENT_COUNT_SINGLE_PRODUCT";
 export const INCREMENT_COUNT_PRODUCTS = "INCREMENT_COUNT_PRODUCTS";
 export const DECREMENT_COUNT_PRODUCTS = "DECREMENT_COUNT_PRODUCTS";
 export const CALCULATE_TOTAL_COUNT = "CALCULATE_TOTAL_COUNT";
 
-export const addSizeAndPrice = (data) => {
+export const updateProperties = (data) => {
   return {
-    type: ADD_SIZE_AND_PRICE,
+    type: UPDATE_PROPERTIES,
     payload: data,
   };
 };

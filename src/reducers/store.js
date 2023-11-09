@@ -1,9 +1,9 @@
 import { legacy_createStore as createStore, combineReducers } from "redux";
-import { productReducer, productPropertiesReducer } from "./reducers";
+import { productReducer, propertiesReducer } from "./reducers";
 
 const rootReducer = combineReducers({
   products: productReducer,
-  productProperties: productPropertiesReducer,
+  properties: propertiesReducer,
 });
 
 const store = createStore(rootReducer);

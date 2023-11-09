@@ -17,10 +17,12 @@ import {
 } from "../reducers/actions";
 
 function ImageUpload() {
-  let files = useSelector((state) => state.products);
-  let totalCount = useSelector((state) => state.totalCount);
+  let files = useSelector((state) => state.products.products);
+  let totalCount = useSelector((state) => state.products.totalCount);
+  let properties = useSelector((state) => state.products.productProperties);
   console.log(files);
   console.log("totalcount = ", totalCount);
+  console.log(properties);
   const dispatch = useDispatch();
   const handleMultipleCardsIncrement = () => {
     dispatch(incrementCountProducts());

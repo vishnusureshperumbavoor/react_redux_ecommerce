@@ -15,8 +15,13 @@ import Paper from "@mui/material/Paper";
 import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 
 function PrintType() {
+  let files = useSelector((state) => state.products);
+  let properties  = useSelector((state)=>state.properties)
+  console.log(files);
+  console.log(properties);
   const params = useParams();
   const productId = Number(params.id);
   let product = productData.find((product) => product.id === productId);
