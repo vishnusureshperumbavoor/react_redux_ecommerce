@@ -26,12 +26,15 @@ function ImageUpload() {
   const handleCartClick = () => {
     navigate(`/cart`);
   };
+  const handleBackClick = () => {
+    navigate(`/printtype`);
+  };
   const files = useSelector((state) => state.products.products);
   const totalCount = useSelector((state) => state.products.totalCount);
   const properties = useSelector((state) => state.properties.properties);
-
+  console.log(files);
+  console.log(totalCount);
   console.log(properties);
-
   const totalPrice = totalCount * properties.price;
   const dispatch = useDispatch();
   const handleMultipleCardsIncrement = () => {
@@ -67,13 +70,13 @@ function ImageUpload() {
         <Navbar />
         <Box sx={{ minHeight: 577 }}>
           <Box sx={{ textAlign: "left", ml: 1 }}>
-            <Typography sx={{ fontSize: 12 }}>
+            <Typography sx={{ fontSize: 12, fontWeight: "bold" }}>
               Size : {properties.inchSize}" ({properties.mmSize})
             </Typography>
-            <Typography sx={{ fontSize: 12 }}>
+            <Typography sx={{ fontSize: 12, fontWeight: "bold" }}>
               Price : ₹{properties.price}
             </Typography>
-            <Typography sx={{ fontSize: 12 }}>
+            <Typography sx={{ fontSize: 12, fontWeight: "bold" }}>
               {properties.paperType}/{properties.border}
             </Typography>
           </Box>
@@ -166,6 +169,7 @@ function ImageUpload() {
             <Button
               sx={{ background: "#679e1e", border: 1, borderRadius: 2 }}
               variant="contained"
+              onClick={handleBackClick}
             >
               <ArrowBackIcon sx={{ mr: 1 }} />
               Back

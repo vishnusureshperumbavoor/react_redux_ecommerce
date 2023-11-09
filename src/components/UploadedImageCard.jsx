@@ -3,20 +3,17 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import { useParams } from "react-router-dom";
-import { productData } from "../data/data";
 import NotFound from "./NotFound";
 import { Box, Button } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { decrementCountSingleProduct, incrementCountSingleProduct } from "../reducers/actions";
 
 function UploadedImageCard({ product }) {
     const dispatch = useDispatch()
-  const params = useParams();
-  let productId = Number(params.id);
-  const widthId = productData.find((product) => product.id === productId);
-  if (!widthId) {
+  const properties = useSelector((state) => state.properties.properties);
+  if (!properties) {
     return <NotFound />;
   }
   const handleSingleCardIncrement = () => {
@@ -41,7 +38,7 @@ function UploadedImageCard({ product }) {
             <img
               src={URL.createObjectURL(product.fileData)}
               height="140"
-              width={widthId.uploadImageWidth}
+              width={properties.uploadImageWidth}
               alt="Uploaded"
               style={{
                 borderRadius: 2,

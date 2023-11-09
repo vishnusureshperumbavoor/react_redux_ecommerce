@@ -42,6 +42,11 @@ function PrintType() {
     dispatch(updateProperties(properties));
     navigate(`/imageupload`);
   };
+
+  const handleBackClick = () => {
+    navigate(`/`);
+  };
+
   if (!property) {
     return <NotFound />;
   }
@@ -160,6 +165,7 @@ function PrintType() {
             <Button
               sx={{ background: "#679e1e", border: 1, borderRadius: 2 }}
               variant="contained"
+              onClick={handleBackClick}
             >
               <ArrowBackIcon sx={{ mr: 1 }} />
               Back
