@@ -35,10 +35,14 @@ function Cart() {
   const handleRemoveCart = (cartId) => {
     dispatch(removeFromCart(cartId));
   };
+
+  const handleUpdateCart = (cartId) =>{
+    navigate(`/updateCart/${cartId}`)
+  }
   return (
     <div>
       <Navbar />
-      <Container sx={{ minHeight: 561 }}>
+      <Container sx={{ minHeight: 545 }}>
         <TableContainer component={Paper} sx={{ m: 4 }}>
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>
@@ -72,8 +76,9 @@ function Cart() {
                           variant="contained"
                           color="success"
                           sx={{ mr: 1 }}
+                          onClick={()=>handleUpdateCart(row.id)}
                         >
-                          UPDATE CART
+                          VIEW CART
                         </Button>
                         <Button
                           variant="contained"

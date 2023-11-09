@@ -18,7 +18,7 @@ import { updateProperties } from "../reducers/actions";
 
 function PrintType() {
   const [paperType, setPaperType] = useState("glossy");
-  const [border, setBorder] = useState("border");
+  const [border, setBorder] = useState("borderless");
   const [properties, setProperties] = useState({});
   const property = useSelector((state) => state.properties.properties);
   const navigate = useNavigate();
@@ -83,8 +83,13 @@ function PrintType() {
                     aria-label="Platform"
                     sx={{ mb: 2, mr: 2, ml: 2 }}
                   >
-                    <ToggleButton value="glossy">Glossy</ToggleButton>
-                    <ToggleButton value="luster">Luster</ToggleButton>
+                    <ToggleButton value="glossy">
+                      <Typography sx={{ color: "black" }}>Glossy</Typography>
+                    </ToggleButton>
+                    <ToggleButton value="luster">
+                      <Typography sx={{ color: "black" }}>Luster</Typography>
+                      
+                    </ToggleButton>
                   </ToggleButtonGroup>
                 </Box>
                 <Box>

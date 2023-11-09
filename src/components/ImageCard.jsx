@@ -18,18 +18,18 @@ function ImageCard({ product }) {
 
   return (
     <div>
-      <Card
-        sx={{
-          minHeight: 260,
-          minWidth: 210,
-          m: 2,
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "flex-end",
-        }}
-        onClick={handleProductClick}
-      >
-        <CardActionArea>
+      <CardActionArea>
+        <Card
+          sx={{
+            minHeight: 272,
+            minWidth: 210,
+            m: 2,
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "flex-end",
+          }}
+          onClick={handleProductClick}
+        >
           <CardContent>
             <img
               src={product.imageURL}
@@ -44,15 +44,14 @@ function ImageCard({ product }) {
             />
           </CardContent>
           <CardContent>
-            {product.id}
             <Typography gutterBottom component="div">
               Size : {product.inchSize}" <br />
               <Typography sx={{ fontSize: 14 }}>({product.mmSize})</Typography>
             </Typography>
             <Typography>Price: ₹{product.price}</Typography>
           </CardContent>
-        </CardActionArea>
-      </Card>
+        </Card>
+      </CardActionArea>
     </div>
   );
 }

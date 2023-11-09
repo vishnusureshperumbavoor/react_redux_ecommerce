@@ -6,6 +6,7 @@ import ImageUpload from "./components/ImageUpload";
 import { Provider } from "react-redux";
 import store from "./reducers/store";
 import Cart from "./components/Cart";
+import UpdateCart from "./components/UpdateCart";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
             <Route path="/printtype" element={<PrintType />} />
             <Route path="/imageupload" element={<ImageUpload />} />
             <Route path="/cart" element={<Cart />} />
+            <Route path="/updateCart/:id" element={<UpdateCart />} />
           </Routes>
         </Router>
       </Provider>

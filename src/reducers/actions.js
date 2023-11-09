@@ -9,6 +9,15 @@ export const UPDATE_CART = "UPDATE_CART";
 export const DELETE_PRODUCT = "DELETE_PRODUCT";
 export const REMOVE_FROM_CART = "REMOVE_FROM_CART";
 
+// cart updates
+export const REMOVE_SINGLE_FILE_FROM_CART = "REMOVE_SINGLE_FILE_FROM_CART";
+export const INCREMENT_SINGLE_FILE_FROM_CART = "INCREMENT_SINGLE_FILE_FROM_CART";
+export const DECREMENT_SINGLE_FILE_FROM_CART = "DECREMENT_SINGLE_FILE_FROM_CART";
+export const INCREMENT_ALL_FILES_FROM_CART = "INCREMENT_ALL_FILES_FROM_CART";
+export const DECREMENT_ALL_FILES_FROM_CART = "DECREMENT_SINGLE_FILE_FROM_CART";
+export const UPLOAD_TO_CART = "UPLOAD_TO_CART";
+
+
 export const updateProperties = (data) => {
   return {
     type: UPDATE_PROPERTIES,
@@ -75,3 +84,4 @@ export const removeFromCart = (productId) => {
     payload: productId,
   };
 };
+
