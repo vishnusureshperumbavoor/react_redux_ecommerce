@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import Navbar from "./Header";
-import Footer from "./Footer";
 import { Card, CardContent, Container, Typography } from "@mui/material";
 import { useParams } from "react-router-dom";
 import { productData } from "../data/data";
@@ -10,33 +9,49 @@ import Paper from "@mui/material/Paper";
 import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import { useState } from "react";
+import AppBar from "@mui/material/AppBar";
+import Toolbar from "@mui/material/Toolbar";
+import Button from "@mui/material/Button";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { updateProperties } from "../reducers/actions";
 
 function PrintType() {
-  const params = useParams();
-  const productId = Number(params.id);
-  let product = productData.find((product) => product.id === productId);
+  const selector =  useSelector((state)=>state.properties)
+  console.log(selector);
   const [paperType, setPaperType] = useState("glossy");
   const [border, setBorder] = useState("border");
   const [properties, setProperties] = useState({});
-
+  const { id } = useParams();
+  const productId = Number(id);
+  let product = productData.find((product) => product.id === productId);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  
   const handlePaperType = (e, newPaperType) => {
     e.preventDefault();
     setPaperType(newPaperType);
   };
-
+  
   const handleBorder = (e, newBorder) => {
     e.preventDefault();
     setBorder(newBorder);
   };
-
+  
   useEffect(() => {
     setProperties({ paperType, border });
   }, [paperType, border]);
-
+  
+  const handleNextClick = () => {
+    dispatch(updateProperties(properties));
+    navigate(`/imageupload/${product.id}`);
+  };
   if (!product) {
     return <NotFound />;
   }
-  
+
   return (
     <>
       <Navbar />
@@ -92,7 +107,6 @@ function PrintType() {
                           justifyContent: "flex-end",
                         }}
                       >
-                        {/* <CardActionArea> */}
                         <CardContent>
                           <img
                             src={product.imageURL}
@@ -120,7 +134,6 @@ function PrintType() {
                           justifyContent: "flex-end",
                         }}
                       >
-                        {/* <CardActionArea> */}
                         <CardContent>
                           <img
                             src={product.imageURL}
@@ -138,7 +151,6 @@ function PrintType() {
                         <CardContent>
                           <Typography>Border</Typography>
                         </CardContent>
-                        {/* </CardActionArea> */}
                       </Card>
                     </ToggleButton>
                   </ToggleButtonGroup>
@@ -148,7 +160,34 @@ function PrintType() {
           </Box>
         </Container>
       </div>
-      <Footer properties={properties} />
+      <AppBar position="static" sx={{ background: "#679e1e" }}>
+        <Container maxWidth="xl">
+          <Toolbar disableGutters>
+            <Button
+              sx={{ background: "#679e1e", border: 1, borderRadius: 2 }}
+              variant="contained"
+            >
+              <ArrowBackIcon sx={{ mr: 1 }} />
+              Back
+            </Button>
+            {id && (
+              <Button
+                sx={{
+                  background: "#679e1e",
+                  border: 1,
+                  borderRadius: 2,
+                  marginLeft: "auto",
+                }}
+                variant="contained"
+                onClick={handleNextClick}
+              >
+                Next
+                <ArrowForwardIcon sx={{ ml: 1 }} />
+              </Button>
+            )}
+          </Toolbar>
+        </Container>
+      </AppBar>
     </>
   );
 }

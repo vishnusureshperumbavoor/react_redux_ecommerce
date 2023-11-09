@@ -1,5 +1,5 @@
 export const initialState = {
   products: [],
-  properties: [],
+  properties: {},
   totalCount: 0,
 };

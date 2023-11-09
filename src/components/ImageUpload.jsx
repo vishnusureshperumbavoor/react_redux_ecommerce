@@ -19,7 +19,7 @@ import {
 function ImageUpload() {
   let files = useSelector((state) => state.products.products);
   let totalCount = useSelector((state) => state.products.totalCount);
-  let properties = useSelector((state) => state.products.productProperties);
+  let properties = useSelector((state) => state.properties.properties);
   console.log(files);
   console.log("totalcount = ", totalCount);
   console.log(properties);
@@ -127,7 +127,6 @@ function ImageUpload() {
           <Button variant="contained">Total Number of prints : {totalCount}</Button>
         </Box>
       </Box>
-      <Footer />
     </div>
   );
 }

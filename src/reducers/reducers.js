@@ -68,7 +68,11 @@ export const productReducer = (state = initialState, action) => {
 export const propertiesReducer = (state = initialState, action) => {
   switch (action.type) {
     case UPDATE_PROPERTIES:
-      return { ...state, properties: [...state.properties, action.payload] };
+      console.log(action.payload);
+      return {
+        ...state,
+        properties: { ...state.properties, ...action.payload },
+      };
     default:
       return state;
   }
