@@ -7,7 +7,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Container from "@mui/material/Container";
@@ -15,8 +15,10 @@ import Button from "@mui/material/Button";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { useNavigate } from "react-router-dom";
 import Box from "@mui/material/Box";
+import { removeFromCart } from "../reducers/actions";
 
 function Cart() {
+  const dispatch = useDispatch();
   const files = useSelector((state) => state.products.products);
   const totalCount = useSelector((state) => state.products.totalCount);
   const properties = useSelector((state) => state.properties.properties);
@@ -29,12 +31,15 @@ function Cart() {
   const totalAmount = cart.reduce((total, row) => {
     return total + row.properties.price * row.totalCount;
   }, 0);
-  console.log(totalAmount);
+
+  const handleRemoveCart = (cartId) => {
+    dispatch(removeFromCart(cartId));
+  };
   return (
     <div>
       <Navbar />
       <Container sx={{ minHeight: 561 }}>
-        <TableContainer component={Paper} sx={{ mt: 2 }}>
+        <TableContainer component={Paper} sx={{ m: 4 }}>
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>
               <TableRow>
@@ -73,6 +78,7 @@ function Cart() {
                         <Button
                           variant="contained"
                           style={{ background: "red" }}
+                          onClick={()=>handleRemoveCart(row.id)}
                         >
                           REMOVE CART
                         </Button>

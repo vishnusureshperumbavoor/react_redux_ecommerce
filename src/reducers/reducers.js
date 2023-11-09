@@ -8,6 +8,7 @@ import {
   UPDATE_PROPERTIES,
   UPDATE_CART,
   DELETE_PRODUCT,
+  REMOVE_FROM_CART,
 } from "./actions";
 import { initialState } from "../data/reduxData";
 
@@ -87,6 +88,8 @@ export const cartReducer = (state = initialState.cart, action) => {
   switch (action.type) {
     case UPDATE_CART:
       return [...state, action.payload];
+    case REMOVE_FROM_CART:
+      return state.filter((item) => item.id !== action.payload);
     default:
       return state;
   }

@@ -7,6 +7,7 @@ export const DECREMENT_COUNT_PRODUCTS = "DECREMENT_COUNT_PRODUCTS";
 export const CALCULATE_TOTAL_COUNT = "CALCULATE_TOTAL_COUNT";
 export const UPDATE_CART = "UPDATE_CART";
 export const DELETE_PRODUCT = "DELETE_PRODUCT";
+export const REMOVE_FROM_CART = "REMOVE_FROM_CART";
 
 export const updateProperties = (data) => {
   return {
@@ -65,5 +66,12 @@ export const updateCart = (products) => {
   return {
     type: UPDATE_CART,
     payload: products,
+  };
+};
+
+export const removeFromCart = (productId) => {
+  return {
+    type: REMOVE_FROM_CART,
+    payload: productId,
   };
 };
