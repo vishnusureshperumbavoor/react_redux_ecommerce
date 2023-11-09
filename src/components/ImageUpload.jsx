@@ -48,11 +48,12 @@ function ImageUpload() {
   };
 
   const handleAddToCart = () => {
-    const cartDetails={
+    const cartDetails = {
+      id: Math.floor(Date.now()),
       files,
       properties,
-      totalCount
-    }
+      totalCount,
+    };
     dispatch(updateCart(cartDetails));
   };
 
@@ -64,8 +65,6 @@ function ImageUpload() {
     const newImage = e.target.files[0];
     dispatch(addProduct(newImage));
   };
-
-  
 
   const VisuallyHiddenInput = styled("input")({
     clip: "rect(0 0 0 0)",
@@ -208,7 +207,7 @@ function ImageUpload() {
               variant="contained"
               onClick={handleCartClick}
             >
-              <Badge badgeContent={cart.length} color="success" sx={{mr:2}}>
+              <Badge badgeContent={cart.length} color="success" sx={{ mr: 2 }}>
                 <AddShoppingCartIcon color="action" />
               </Badge>
               Cart
