@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redux-ecommerce-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: redux-ecommerce
+  template:
+    metadata:
+      labels:
+        app: redux-ecommerce
+    spec:
+      containers:
+      - name: redux-ecommerce-container
+        image: vishnusureshperumbavoor2/redux_ecommerce:latest
+        ports:
+        - containerPort: 80
